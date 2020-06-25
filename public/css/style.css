@@ -1,0 +1,43 @@
+* {
+    background-color: whitesmoke;
+}
+
+h1 {
+    text-align: center;
+    font-family: monospace;
+    font-size: 30px;
+}
+
+#main {
+    display: flex;
+    width: 100vw;
+    height: 80vh;
+    /* background-color: darkgoldenrod; */
+    justify-content: space-around;
+}
+
+.card {
+    margin-top: 30px;
+    text-align: center;
+    /* background-color: hotpink; */
+    width: 350px;
+    height: 450px;
+}
+
+.card p {
+    font-family: monospace;
+    font-size: 18px;
+}
+
+img {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    width: 350px;
+    height: 300px;
+    object-fit: cover;
+}
+
+img:hover {
+    box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+}

@@ -29,3 +29,5 @@ INSERT INTO images (url, username, title, description) VALUES (
     'To be or not to be',
     'That is the question.'
 );
+
+SELECT url, title FROM images
