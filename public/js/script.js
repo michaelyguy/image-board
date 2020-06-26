@@ -30,7 +30,7 @@
                 //// WE USE FORMDATA ONLY COS WE ARE WORKING WITH A FILE!! ///
                 var formData = new FormData();
                 formData.append("title", this.title);
-                formData.append("desctiption", this.description);
+                formData.append("description", this.description);
                 formData.append("user", this.username);
                 formData.append("file", this.file);
 
