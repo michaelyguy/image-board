@@ -1,8 +1,10 @@
 const express = require("express");
 const app = express();
+const s3 = require("./s3.js");
+const { s3Url } = require("./config.json");
 
 app.use(express.static("public"));
-const { getUrlAndTitle } = require("./db.js");
+const { getUrlAndTitle, addImage } = require("./db.js");
 
 ////// FILE UPLOAD BOILERPLATE //////
 const multer = require("multer");
@@ -29,29 +31,47 @@ const uploader = multer({
 //////////////////////////////////////
 
 app.get("/images", (req, res) => {
-    getUrlAndTitle().then((result) => {
-        console.log("------RESULT IN /IMAGES------");
-        console.log(result);
-        res.json(result.rows);
-    });
+    getUrlAndTitle()
+        .then((result) => {
+            // console.log("------RESULT IN GET /IMAGES------");
+            // console.log(result);
+            res.json(result.rows);
+        })
+        .catch((err) => {
+            console.log("----ERROR IN GET /IMAGES----", err);
+        });
 });
 
-app.post("/upload", uploader.single("file"), (req, res) => {
-    //// REQ.FILE IS THE FILE WE JUST UPLOADED
-    console.log("file: ", req.file);
-    //// REQ.BODY IS THE REST OF THE INPUT FIELD -username , description
-    console.log("input: ", req.body);
+app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
+    const { filename } = req.file;
+    const imageUrl = `${s3Url}${filename}`;
+    addImage(imageUrl, req.body.title, req.body.description, req.body.user)
+        .then(({ rows }) => {
+            console.log("------ROWS------");
+            console.log(rows);
+            res.json(rows[0]);
+        })
+        .catch((err) => {
+            console.log("----ERROR IN POST /UPLOAD----", err);
+        });
 
-    if (req.file) {
-        /// MAKE DB INSERT FOR ALL THE INFO ////
-        res.json({
-            success: true,
-        });
-    } else {
-        res.json({
-            success: false,
-        });
-    }
+    //// REQ.FILE IS THE FILE WE JUST UPLOADED
+    // console.log("------REQ.FILE-------");
+    // console.log(req.file);
+    //// REQ.BODY IS THE REST OF THE INPUT FIELD -username , description
+    console.log("------REQ.BODY-------");
+    console.log(req.body);
+
+    // if (req.file) {
+    /// MAKE DB INSERT FOR ALL THE INFO ////
+    //     res.json({
+    //         success: true,
+    //     });
+    // } else {
+    //     res.json({
+    //         success: false,
+    //     });
+    // }
 });
 
 app.listen(8080, () => {

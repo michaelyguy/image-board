@@ -7,3 +7,7 @@ const db = spicedPg(
 module.exports.getUrlAndTitle = () => {
     return db.query(`SELECT url, title FROM images`);
 };
+
+module.exports.addImage = (url, title, description, username) => {
+    return db.query(`SELECT url, title, description, username FROM images`);
+};
