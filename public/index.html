@@ -10,11 +10,24 @@
 
      <div id="main">
          <div  v-for="item in images" class="card">
-             <!-- <div > -->
-             <img  :src= " item.url ">
-              <p>{{ item.title }}</p>
-              <!-- </div÷> -->
+        <img  :src= " item.url ">
+        <p>{{ item.title }}</p>
+              
         </div>
+
+        <form>
+            <input v-model="title" type="text" name="title" placeholder="title">
+            <input v-model="description" type="text" name="description" placeholder="description">
+            <input v-model="username" type="text" name="username" placeholder="username">
+            <input @change="handleChange" type="file" name="file" accept="image/*">
+
+            <button @click="handleClick">submit</button>
+
+
+        </form>
+
+
+
 </div>
 
 
