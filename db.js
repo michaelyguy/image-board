@@ -5,7 +5,7 @@ const db = spicedPg(
 );
 
 module.exports.getUrlAndTitle = () => {
-    return db.query(`SELECT url, title FROM images`);
+    return db.query(`SELECT * FROM images`);
 };
 
 module.exports.addImage = (url, title, description, username) => {
@@ -13,4 +13,8 @@ module.exports.addImage = (url, title, description, username) => {
         `INSERT INTO images (url, title, description, username) VALUES ($1, $2, $3, $4) RETURNING *`,
         [url, title, description, username]
     );
+};
+
+module.exports.getImageById = (id) => {
+    return db.query(`SELECT * FROM images WHERE id = $1`, [id]);
 };

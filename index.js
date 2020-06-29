@@ -4,7 +4,7 @@ const s3 = require("./s3.js");
 const { s3Url } = require("./config.json");
 
 app.use(express.static("public"));
-const { getUrlAndTitle, addImage } = require("./db.js");
+const { getUrlAndTitle, addImage, getImageById } = require("./db.js");
 
 ////// FILE UPLOAD BOILERPLATE //////
 const multer = require("multer");
@@ -39,6 +39,21 @@ app.get("/images", (req, res) => {
         })
         .catch((err) => {
             console.log("----ERROR IN GET /IMAGES----", err);
+        });
+});
+
+app.get("/image/:id", (req, res) => {
+    console.log("----THIS. ID IN ID-------");
+    console.log(req.params.id);
+
+    getImageById(req.params.id)
+        .then((result) => {
+            console.log("-----RESULT IN /ID----");
+            console.log(result);
+            res.json(result.rows[0]);
+        })
+        .catch((err) => {
+            console.log("ERROR IN CATCH /ID", err);
         });
 });
 

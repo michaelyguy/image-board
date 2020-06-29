@@ -22,19 +22,23 @@
 
 
             <div v-for="item in images" class="card">
-                <img :src= " item.url ">
+                <img @click="showid(item.id);" :src= "item.url">
                 <p>{{ item.title }}</p>
             </div>
             
-            <image-view v-if='showImageView' :say-greeting='hello' @close='closeMe'></image-view>
+            <image-view v-if='id' :id="id"></image-view>
         
     </div>
 
 
     <script id='template' type='text/x-template'>
             <div class='component'>
-                <h1 @click='changeName'> Image View </h1>
-                <h2>Hello {{name}} </h2>
+                <h1> Image View </h1>
+                 <img :src= "image">
+                 <p> {{title}} </p>
+                 <p> {{description}} </p>
+                  <p> {{username}} </p>
+                
                 <h2 @click='closeModal'>Close Me </h2> 
             </div>
     </script>
