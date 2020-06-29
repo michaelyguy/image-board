@@ -3,9 +3,7 @@
     new Vue({
         el: "#main",
         data: {
-            seen: false,
             images: [],
-            // ADDING DATA PROPERTIES THAT WILL STORE FOR THE IMPUT FIELD
             title: "",
             description: "",
             username: "",
@@ -17,15 +15,16 @@
             axios.get("/images").then(function (response) {
                 console.log("this: ", self);
                 console.log("response from images:", response);
-                self.images = response.data;
+                self.images = response.data.reverse();
             });
         },
 
         methods: {
             /// "THIS" IS YOUT FRIEND ////
-            handleClick: function (event) {
-                event.preventDefault();
+            handleClick: function (e) {
+                e.preventDefault();
                 console.log("this:", this);
+                var self = this;
 
                 //// WE USE FORMDATA ONLY COS WE ARE WORKING WITH A FILE!! ///
                 var formData = new FormData();
@@ -38,6 +37,7 @@
                     .post("/upload", formData)
                     .then(function (response) {
                         console.log("this is the response: ", response);
+                        self.images.unshift(response.data);
                     })
                     .catch(function (err) {
                         console.log("error ins POST /upload: ", err);

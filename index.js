@@ -45,33 +45,23 @@ app.get("/images", (req, res) => {
 app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
     const { filename } = req.file;
     const imageUrl = `${s3Url}${filename}`;
-    addImage(imageUrl, req.body.title, req.body.description, req.body.user)
-        .then(({ rows }) => {
-            console.log("------ROWS------");
-            console.log(rows);
-            res.json(rows[0]);
-        })
-        .catch((err) => {
-            console.log("----ERROR IN POST /UPLOAD----", err);
-        });
+    console.log("-----REQ.BODY------");
 
-    //// REQ.FILE IS THE FILE WE JUST UPLOADED
-    // console.log("------REQ.FILE-------");
-    // console.log(req.file);
-    //// REQ.BODY IS THE REST OF THE INPUT FIELD -username , description
-    console.log("------REQ.BODY-------");
     console.log(req.body);
 
-    // if (req.file) {
-    /// MAKE DB INSERT FOR ALL THE INFO ////
-    //     res.json({
-    //         success: true,
-    //     });
-    // } else {
-    //     res.json({
-    //         success: false,
-    //     });
-    // }
+    if (filename) {
+        addImage(imageUrl, req.body.title, req.body.description, req.body.user)
+            .then((result) => {
+                console.log("------RESULT------");
+                console.log(result);
+                res.json(result.rows[0]);
+            })
+            .catch((err) => {
+                console.log("----ERROR IN POST /UPLOAD----", err);
+            });
+    } else {
+        console.log("SOMETHING WENT WRONG!");
+    }
 });
 
 app.listen(8080, () => {
