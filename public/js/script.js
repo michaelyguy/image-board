@@ -1,5 +1,28 @@
 /// NOT ALLOWED TO USE =>function OR ANY ES6 ///
 (function () {
+    Vue.component("image-view", {
+        // this is what connects our HTML to our Vue component - MUST equal the id of our script tag
+        template: "#template",
+        props: ["sayGreeting"],
+        data: function () {
+            return {
+                name: "Andrea",
+            };
+        },
+        mounted: function () {
+            console.log("props: ", this.sayGreeting);
+        },
+        methods: {
+            changeName: function () {
+                this.name = "Dill";
+            },
+            closeModal: function () {
+                console.log("about to emit from the component!!!!");
+                this.$emit("close");
+            },
+        },
+    });
+
     new Vue({
         el: "#main",
         data: {
@@ -8,6 +31,7 @@
             description: "",
             username: "",
             file: null,
+            showImageView: true,
         },
 
         mounted: function () {

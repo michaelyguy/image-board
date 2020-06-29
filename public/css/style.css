@@ -1,5 +1,6 @@
 * {
     background-color: whitesmoke;
+    margin: 0;
 }
 
 h1 {
@@ -45,4 +46,22 @@ img:hover {
 
 .input-fields {
     text-align: center;
+}
+
+.overlay {
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.3);
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+}
+
+.component {
+    text-align: center;
+    background-color: aqua;
+    position: fixed;
+    top: 60px;
+    height: 80vh;
+    width: 45vw;
+    z-index: 1;
 }
