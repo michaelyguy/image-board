@@ -9,7 +9,7 @@
 
     <div id="main">
     <!-- <div class="overlay"></div> -->
-            <div class="input-fields">
+            <div class="header">
                     <h1>My Imageboard</h1>
                     <form>
                             <input v-model="title" type="text" name="title" placeholder="title">
@@ -20,10 +20,11 @@
                     </form>
                 </div>
 
-
-            <div v-for="item in images" class="card">
-                <img @click="showid(item.id);" :src= "item.url">
-                <p>{{ item.title }}</p>
+            <div class="container">
+                <div v-for="item in images" class="card">
+                    <img @click="showid(item.id);" :src= "item.url">
+                    <p>{{ item.title }}</p>
+                </div>
             </div>
             
             <image-view v-if='id' :id="id" @close='closeMe'></image-view>
@@ -37,13 +38,15 @@
                  <p> {{username}} </p>
                  <img :src= "image">
                  <p> {{description}} </p>
-                 
                 
                    <form>
                             <input v-model="comment" type="text" name="conmment" placeholder="comment">
                             <input v-model="comment_username" type="text" name="username" placeholder="username">
                             <button @click="handleClick">submit</button>
                     </form>
+
+                     <p> {{comment}} </p>
+                  <p> {{comment_username}} </p>
 
                 <h2 @click="closeModal">Close</h2> 
             </div>

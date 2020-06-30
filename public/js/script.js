@@ -20,23 +20,30 @@
         // },
         mounted: function () {
             var self = this;
-            axios.get("/image/" + this.id).then(function (response) {
-                // console.log("-----SELF------");
-                // console.log(self.id);
-                // console.log("-----RESPONSE------");
-                // console.log(response);
-                self.title = response.data.title;
-                self.description = response.data.description;
-                self.username = response.data.username;
-                self.image = response.data.url;
-            });
+            axios
+                .get("/image/" + this.id)
+                .then(function (response) {
+                    // console.log("-----SELF------");
+                    // console.log(self.id);
+                    // console.log("-----RESPONSE------");
+                    // console.log(response);
+                    self.title = response.data.title;
+                    self.description = response.data.description;
+                    self.username = response.data.username;
+                    self.image = response.data.url;
+                })
+                .catch(function (err) {
+                    console.log("ERROR IN GET /IMAGE/ + THIS.ID", err);
+                });
             axios
                 .get("/comments/" + this.id)
                 .then(function (response) {
-                    console.log("-----RESPONSE IN GET COMMENTs----");
-                    console.log(response);
-                    console.log("-----SELF IN GET COMMENTs----");
-                    console.log(self);
+                    // console.log("-----RESPONSE IN GET COMMENTs----");
+                    // console.log(response);
+                    // console.log("-----SELF IN GET COMMENTs----");
+                    // console.log(self);
+                    self.comment = response.data.comment;
+                    self.comment_username = response.data.comment_username;
                 })
                 .catch(function (err) {
                     console.log("ERROR IN GET /COMENTS", err);
