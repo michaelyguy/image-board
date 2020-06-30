@@ -9,6 +9,8 @@
                 title: "",
                 description: "",
                 username: "",
+                comment: "",
+                comment_username: "",
             };
         },
 
@@ -19,23 +21,51 @@
         mounted: function () {
             var self = this;
             axios.get("/image/" + this.id).then(function (response) {
-                console.log("-----SELF------");
-                console.log(self.id);
-                console.log("-----RESPONSE------");
-                console.log(response);
+                // console.log("-----SELF------");
+                // console.log(self.id);
+                // console.log("-----RESPONSE------");
+                // console.log(response);
                 self.title = response.data.title;
                 self.description = response.data.description;
                 self.username = response.data.username;
                 self.image = response.data.url;
-                console.log("-----response.data.url-------");
-                console.log(response.data.url);
             });
+            axios
+                .get("/comments/" + this.id)
+                .then(function (response) {
+                    console.log("-----RESPONSE IN GET COMMENTs----");
+                    console.log(response);
+                    console.log("-----SELF IN GET COMMENTs----");
+                    console.log(self);
+                })
+                .catch(function (err) {
+                    console.log("ERROR IN GET /COMENTS", err);
+                });
         },
 
         methods: {
             closeModal: function () {
-                console.log("about to emit from the component!!!!");
                 this.$emit("close");
+            },
+            handleClick: function (e) {
+                e.preventDefault();
+                // console.log("this:", this);
+                var self = this;
+                // console.log("-----SELF-------");
+                // console.log(self);
+                axios
+                    .post("/comment/" + self.id, {
+                        comment: self.comment,
+                        comment_username: self.comment_username,
+                    })
+                    .then(function (response) {
+                        // console.log("---------RESPONSE IN POST CLICK-------");
+                        // console.log("this is the response: ", response);
+                        // self.images.unshift(response.data);
+                    })
+                    .catch(function (err) {
+                        console.log("error ins POST /upload: ", err);
+                    });
             },
         },
     });
@@ -48,15 +78,14 @@
             description: "",
             username: "",
             file: null,
-            // showImageView: null,
             id: null,
         },
 
         mounted: function () {
             var self = this;
             axios.get("/images").then(function (response) {
-                console.log("this: ", self);
-                console.log("response from images:", response);
+                // console.log("this: ", self);
+                // console.log("response from images:", response);
                 self.images = response.data.reverse();
             });
         },
@@ -64,7 +93,7 @@
         methods: {
             handleClick: function (e) {
                 e.preventDefault();
-                console.log("this:", this);
+                // console.log("this:", this);
                 var self = this;
 
                 //// WE USE FORMDATA ONLY COS WE ARE WORKING WITH A FILE!! ///
@@ -98,10 +127,7 @@
                 this.id = id;
             },
             closeMe: function () {
-                console.log(
-                    "closeMe in the instance / parent is running! This was emitted from the component"
-                );
-                this.id == null;
+                this.id = null;
             },
         },
     });

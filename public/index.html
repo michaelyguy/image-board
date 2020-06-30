@@ -26,20 +26,26 @@
                 <p>{{ item.title }}</p>
             </div>
             
-            <image-view v-if='id' :id="id"></image-view>
+            <image-view v-if='id' :id="id" @close='closeMe'></image-view>
         
     </div>
 
 
     <script id='template' type='text/x-template'>
             <div class='component'>
-                <h1> Image View </h1>
+                <h1> {{title}} </h1>
+                 <p> {{username}} </p>
                  <img :src= "image">
-                 <p> {{title}} </p>
                  <p> {{description}} </p>
-                  <p> {{username}} </p>
+                 
                 
-                <h2 @click='closeModal'>Close Me </h2> 
+                   <form>
+                            <input v-model="comment" type="text" name="conmment" placeholder="comment">
+                            <input v-model="comment_username" type="text" name="username" placeholder="username">
+                            <button @click="handleClick">submit</button>
+                    </form>
+
+                <h2 @click="closeModal">Close</h2> 
             </div>
     </script>
 

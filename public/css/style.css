@@ -16,6 +16,7 @@ h1 {
     /* background-color: darkgoldenrod; */
     justify-content: space-around;
     flex-wrap: wrap;
+    /* flex-direction: column; */
 }
 
 .card {
@@ -45,7 +46,12 @@ img:hover {
 }
 
 .input-fields {
+    position: relative;
+    top: 50px;
     text-align: center;
+    /* background-color: blue; */
+    width: 60%;
+    height: 200px;
 }
 
 .overlay {
@@ -58,7 +64,7 @@ img:hover {
 
 .component {
     text-align: center;
-    background-color: aqua;
+    /* background-color: aqua; */
     position: fixed;
     top: 60px;
     height: 80vh;
