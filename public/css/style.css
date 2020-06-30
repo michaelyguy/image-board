@@ -1,14 +1,10 @@
 * {
     margin: 0;
-}
-
-body {
-    /* background-color: whitesmoke; */
+    font-family: monospace;
+    text-align: center;
 }
 
 h1 {
-    text-align: center;
-    font-family: monospace;
     font-size: 30px;
 }
 
@@ -20,28 +16,37 @@ h1 {
 
 input {
     margin: 0 5px;
-    /* background-color: whitesmoke; */
 }
 
-.container {
+.home-container {
     margin: 0 auto;
     display: flex;
-    width: 90vw;
     flex-wrap: wrap;
     justify-content: space-around;
     margin-top: 70px;
 }
 
+.container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    height: 700px;
+    width: 1000px;
+    display: flex;
+    background-color: whitesmoke;
+    margin-top: -350px;
+    margin-left: -500px;
+    z-index: 2;
+    border: 1px solid black;
+    border-radius: 4px;
+    padding: 5px;
+}
 .card {
     margin-top: 30px;
     text-align: center;
-    width: 25%;
+    width: 30%;
     height: 35%;
     margin: 15px 15px;
-}
-
-.card p {
-    font-family: monospace;
     font-size: 18px;
 }
 
@@ -49,8 +54,8 @@ img {
     border: 1px solid black;
     border-radius: 4px;
     padding: 5px;
-    width: 90%;
-    height: 60%;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
 }
 
@@ -86,24 +91,16 @@ img:hover {
 }
 
 .component {
-    height: 80%;
-    width: 45%;
     text-align: center;
-    background-color: aqua;
-    position: fixed;
     display: flex;
     flex-direction: column;
-    align-content: center;
     justify-content: center;
-    top: 60px;
-    z-index: 1;
-    object-fit: cover;
 }
 
 .component img {
-    margin: 0 auto;
+    margin: 20px auto;
     text-align: center;
     width: 70%;
-    height: 85%;
+    height: 70%;
     /* object-fit: cover; */
 }

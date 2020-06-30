@@ -1,4 +1,5 @@
 const express = require("express");
+const chalk = require("chalk");
 const app = express();
 const s3 = require("./s3.js");
 const { s3Url } = require("./config.json");
@@ -52,14 +53,29 @@ app.get("/images", (req, res) => {
         });
 });
 
+//// CHECK FOR THE SCROLL ////
+
+// app.get("/showMore/:id", (req, res) => {
+//     showMore(req.params.id)
+//         .then((result) => {
+//             console.log("------RESULT IN SHOWMORE /ID-----");
+//             console.log(result);
+//             res.json(result.rows[0]);
+//         })
+//         .catch((err) => {
+//             console.log("ERROR IN CATCH SHOWMORE", err);
+//         });
+// });
+
 app.get("/image/:id", (req, res) => {
     // console.log("----THIS. ID IN ID-------");
     // console.log(req.params.id);
 
     getImageById(req.params.id)
         .then((result) => {
-            // console.log("-----RESULT IN /ID----");
-            // console.log(result);
+            console.log("-----RESULT IN /ID----");
+            console.log(result.rows);
+
             res.json(result.rows[0]);
         })
         .catch((err) => {
@@ -68,7 +84,6 @@ app.get("/image/:id", (req, res) => {
 });
 
 app.get("/comments/:id", (req, res) => {
-    // console.log("yay");
     getCommentById(req.params.id)
         .then((result) => {
             console.log("-----RESULT IN GET COMMENTS-----");

@@ -99,6 +99,14 @@
                 // console.log("response from images:", response);
                 self.images = response.data.reverse();
             });
+
+            //// CHECK FOR THE SCROLL ////
+
+            // axios.get("/showMore/" + self.id).then(function (response) {
+            //     console.log("-----RESPONSE IN GET SHOWMORE------");
+            //     console.log(response);
+            //     self.images = response.data.reverse();
+            // });
         },
 
         methods: {

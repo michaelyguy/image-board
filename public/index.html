@@ -10,7 +10,7 @@
     <div id="main">
     <div v-if='id' class="overlay"></div>
             <div class="header">
-                    <h1>My Imageboard</h1>
+                    <h1>Photo Diary</h1>
                     <form>
                             <input v-model="title" type="text" name="title" placeholder="title">
                             <input v-model="description" type="text" name="description" placeholder="description">
@@ -20,7 +20,7 @@
                     </form>
                 </div>
 
-            <div class="container">
+            <div class="home-container">
                 <div v-for="item in images" class="card">
                     <img @click="showid(item.id);" :src= "item.url">
                     <p>{{ item.title }}</p>
@@ -33,27 +33,30 @@
 
 
     <script id='template' type='text/x-template'>
+        <div class="container">
             <div class='component'>
-                <h1> {{title}} </h1>
-                 <p> {{username}} </p>
-                 <img :src= "image">
-                 <p> {{description}} </p>
-                
-                   <form>
-                            <input v-model="comment" type="text" name="conmment" placeholder="comment">
-                            <input v-model="comment_username" type="text" name="username" placeholder="username">
-                            <button @click="handleClick">submit</button>
-                    </form>
-<ul>
-    <li v-for="comment in comments">
-        <p> {{comment.comment}} </p>
-     <p> {{comment.username}} </p>
+                        <h1> {{title}} </h1>
+                        <h2> {{description}} </h2>
+                        <h2> {{username}} </h2>
+                        <img :src= "image">
+                       
+                        
+                        <form>
+                                    <input v-model="comment" type="text" name="conmment" placeholder="comment">
+                                    <input v-model="comment_username" type="text" name="username" placeholder="username">
+                                    <button @click="handleClick">submit</button>
+                        </form>
+                            <ul>
+                                <li v-for="comment in comments">
+                                    <p> {{comment.comment}} </p>
+                                <p> {{comment.username}} </p>
 
-    </li>
-</ul>
+                                </li>
+                            </ul>
 
-                <h2 @click="closeModal">Close</h2> 
+                        <h2 @click="closeModal">Close</h2> 
             </div>
+        </div>
     </script>
 
 
