@@ -11,6 +11,7 @@
                 username: "",
                 comment: "",
                 comment_username: "",
+                comments: [],
             };
         },
 
@@ -44,6 +45,8 @@
                     // console.log(self);
                     self.comment = response.data.comment;
                     self.comment_username = response.data.comment_username;
+                    self.comments = response.data;
+                    console.log("this", self);
                 })
                 .catch(function (err) {
                     console.log("ERROR IN GET /COMENTS", err);
@@ -66,6 +69,7 @@
                         comment_username: self.comment_username,
                     })
                     .then(function (response) {
+                        self.comments.unshift(response.data);
                         // console.log("---------RESPONSE IN POST CLICK-------");
                         // console.log("this is the response: ", response);
                         // self.images.unshift(response.data);

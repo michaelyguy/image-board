@@ -73,7 +73,7 @@ app.get("/comments/:id", (req, res) => {
         .then((result) => {
             console.log("-----RESULT IN GET COMMENTS-----");
             console.log(result);
-            res.json(result.rows[0]);
+            res.json(result.rows);
         })
         .catch((err) => {
             console.log("ERROR IN CATCH GET COMMENTS", err);
