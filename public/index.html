@@ -25,6 +25,7 @@
                     <img @click="showid(item.id);" :src= "item.url">
                     <p>{{ item.title }}</p>
                 </div>
+                <div @click="scrollImages">more</div>
             </div>
             
             <image-view v-if='id' :id="id" @close='closeMe'></image-view>
@@ -37,7 +38,7 @@
             <div class='component'>
                         <h1> {{title}} </h1>
                         <h2> {{description}} </h2>
-                        <h2> {{username}} </h2>
+                        <h2> by: {{username}} </h2>
                         <img :src= "image">
                        
                         

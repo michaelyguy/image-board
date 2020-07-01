@@ -55,17 +55,21 @@ app.get("/images", (req, res) => {
 
 //// CHECK FOR THE SCROLL ////
 
-// app.get("/showMore/:id", (req, res) => {
-//     showMore(req.params.id)
-//         .then((result) => {
-//             console.log("------RESULT IN SHOWMORE /ID-----");
-//             console.log(result);
-//             res.json(result.rows[0]);
-//         })
-//         .catch((err) => {
-//             console.log("ERROR IN CATCH SHOWMORE", err);
-//         });
-// });
+app.get("/showMore/:id", (req, res) => {
+    console.log("-----REQ.PARAMS.Id-----");
+
+    console.log(req.params.id);
+
+    showMore(req.params.id)
+        .then((result) => {
+            console.log("------RESULT IN SHOWMORE /ID-----");
+            console.log(result);
+            res.json(result.rows);
+        })
+        .catch((err) => {
+            console.log("ERROR IN CATCH SHOWMORE", err);
+        });
+});
 
 app.get("/image/:id", (req, res) => {
     // console.log("----THIS. ID IN ID-------");

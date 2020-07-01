@@ -90,6 +90,7 @@
             username: "",
             file: null,
             id: null,
+            cutofId: null,
         },
 
         mounted: function () {
@@ -97,16 +98,11 @@
             axios.get("/images").then(function (response) {
                 // console.log("this: ", self);
                 // console.log("response from images:", response);
-                self.images = response.data.reverse();
+                self.images = response.data;
+                console.log("---SELF.IMAGES--");
+                console.log(self.images);
+                self.cutofId = self.images[0].id - 9;
             });
-
-            //// CHECK FOR THE SCROLL ////
-
-            // axios.get("/showMore/" + self.id).then(function (response) {
-            //     console.log("-----RESPONSE IN GET SHOWMORE------");
-            //     console.log(response);
-            //     self.images = response.data.reverse();
-            // });
         },
 
         methods: {
@@ -147,6 +143,23 @@
             },
             closeMe: function () {
                 this.id = null;
+            },
+
+            scrollImages: function () {
+                console.log("----THIS.CUTOFID----");
+
+                console.log(this.cutofId);
+                let self = this;
+                axios
+                    .get("/showMore/" + this.cutofId)
+                    .then(function (response) {
+                        console.log("-----RESPONSE IN GET SHOWMORE------");
+                        console.log(response);
+                        for (let i = 0; i < response.data.length; i++) {
+                            self.images.push(response.data[i]);
+                        }
+                        self.cutodId -= 9;
+                    });
             },
         },
     });

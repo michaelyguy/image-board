@@ -9,14 +9,14 @@ module.exports.showMore = (id) => {
     return db.query(
         `SELECT * FROM images
                     WHERE id < $1
-                    ORFER BY id DESC
-                    LIMIT 20`,
+                    ORDER BY id DESC
+                    LIMIT 9`,
         [id]
     );
 };
 
 module.exports.getUrlAndTitle = () => {
-    return db.query(`SELECT * FROM images`);
+    return db.query(`SELECT * FROM images ORDER BY id DESC LIMIT 9`);
 };
 
 module.exports.addImage = (url, title, description, username) => {
