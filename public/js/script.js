@@ -104,6 +104,9 @@
 
                 //// SHOW THE MEXT GROUP OF PHOTOS -9 I ALREADY SHOWING ////
                 self.cutofId = self.images[0].id - 9;
+                console.log("----self.cutofId-----");
+
+                console.log(self.cutofId);
             });
         },
 
@@ -150,7 +153,6 @@
             scrollImages: function () {
                 console.log("----THIS.CUTOFID----");
 
-                console.log(this.cutofId);
                 let self = this;
                 axios
                     .get("/showMore/" + this.cutofId)
@@ -160,7 +162,7 @@
                         for (let i = 0; i < response.data.length; i++) {
                             self.images.push(response.data[i]);
                         }
-                        self.cutodId -= 9;
+                        self.cutofId -= 9;
                     });
             },
         },

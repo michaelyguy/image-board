@@ -21,12 +21,16 @@
                 </div>
 
             <div class="home-container">
-                <div v-for="item in images" class="card">
-                    <img @click="showid(item.id);" :src= "item.url">
-                    <p>{{ item.title }}</p>
+                <div v-for="item in images" @click="showid(item.id);" class="card">
+                    <img  :src= "item.url">
+                    <div class="image-hover">
+                    <div class="text">{{ item.title }}</div>
+                </div>
                 </div>
                
             </div>
+
+
              <div @click="scrollImages">more</div>
             
             <image-view v-if='id' :id="id" @close='closeMe'></image-view>
