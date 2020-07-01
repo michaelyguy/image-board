@@ -25,8 +25,9 @@
                     <img @click="showid(item.id);" :src= "item.url">
                     <p>{{ item.title }}</p>
                 </div>
-                <div @click="scrollImages">more</div>
+               
             </div>
+             <div @click="scrollImages">more</div>
             
             <image-view v-if='id' :id="id" @close='closeMe'></image-view>
         

@@ -99,8 +99,10 @@
                 // console.log("this: ", self);
                 // console.log("response from images:", response);
                 self.images = response.data;
-                console.log("---SELF.IMAGES--");
-                console.log(self.images);
+                // console.log("---SELF.IMAGES--");
+                // console.log(self.images);
+
+                //// SHOW THE MEXT GROUP OF PHOTOS -9 I ALREADY SHOWING ////
                 self.cutofId = self.images[0].id - 9;
             });
         },
