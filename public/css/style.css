@@ -86,33 +86,22 @@ input {
 }
 
 img {
-    /* border: 1px solid black;
-    border-radius: 4px;
-    padding: 5px; */
     width: 100%;
     height: 100%;
     object-fit: cover;
-    /* margin-bottom: 10px; */
     border-radius: 2%;
 }
-
-/* img:hover {
-    box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
-} */
 
 .header {
     position: relative;
     top: 20px;
     text-align: center;
-    /* background-color: hotpink; */
 }
 
 .header form {
     margin: 0 auto;
     padding: 20px;
     border-bottom: 1px solid black;
-    /* border-top: 2px solid black;
-    width: 60%; */
 }
 
 .overlay {
@@ -132,8 +121,55 @@ img {
 
 .component img {
     margin: 20px auto;
-    text-align: center;
     width: 70%;
     height: 70%;
-    /* object-fit: cover; */
+    border-radius: 0;
+}
+
+.inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.inputfile + label {
+    display: inline-block;
+    cursor: pointer;
+}
+
+.inputfile:focus + label,
+.inputfile + label:hover {
+    background-color: #ffff00;
+}
+
+/* button:hover {
+    background-color: #ffff00;
+} */
+
+.box {
+    background-color: white;
+    border: 1px solid black;
+    padding: 1px 6px;
+
+    border-radius: 2px;
+}
+
+.rotate {
+    -webkit-transform: translateZ(0);
+    -webkit-transition-duration: 0.3s;
+    -webkit-transition-property: transform;
+    transform: translateZ(0);
+    transition-duration: 0.3s;
+    transition-property: transform;
+}
+
+.rotate:hover,
+.rotate:active,
+.rotate:focus {
+    background: #ffff00;
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
 }
