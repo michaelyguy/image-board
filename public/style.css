@@ -61,24 +61,24 @@ input {
     /* overflow: scroll; */
     flex-grow: 2;
     /* background-color: seagreen; */
-    z-index: 2;
+    z-index: 4;
 }
 
 .container {
+    font-family: "Stabil";
     position: fixed;
     top: 50%;
     left: 50%;
     height: 700px;
     width: 1000px;
     display: flex;
-    background-color: whitesmoke;
-    background-color: yellow;
-
+    background-color: white;
+    color: red;
     margin-top: -375px;
     margin-left: -500px;
-    z-index: 2;
+    z-index: 7;
     border: 1px solid black;
-    border-radius: 4px;
+    border: 6px solid red;
     padding: 5px;
 }
 
@@ -103,21 +103,20 @@ input {
     opacity: 0;
     transition: 0.5s ease;
     /* background-color: #ffff00; */
-    background-color: red;
+    background-color: white;
 
     /* border-radius: 2%; */
     /* font-size: 50px; */
 }
 
 .card:hover .image-hover {
-    opacity: 0.8;
+    opacity: 0.6;
+    /* border: 1.5px solid red; */
     /* opacity: 1; */
-
     /* font-size: 50px; */
 }
 
 .text {
-    font-size: 20px;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -126,24 +125,21 @@ input {
     transform: translate(-50%, -50%);
     text-align: center;
     font-family: "Stabil";
-    font-size: 30px;
-    color: white;
+    font-size: 40px;
+    /* font-weight: bold; */
+    color: red;
 }
 
 img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    /* border-radius: 2%; */
 }
 
 .header {
     position: fixed;
     top: 5px;
-    /* text-align: center; */
-    /* background-color: red; */
-    z-index: 10;
-    /* border-bottom: 1px black solid; */
+    z-index: 5;
 }
 
 .header form {
@@ -176,10 +172,10 @@ img {
 
 .overlay {
     position: fixed;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(255, 255, 255, 0.7);
     height: 100%;
     width: 100%;
-    z-index: 1;
+    z-index: 6;
 }
 
 .component {
@@ -207,9 +203,12 @@ img {
 }
 
 #file {
-    /* color: red; */
+    color: red;
     font-family: "Stabil";
-    font-size: 15px;
+    font-size: 18px;
+    margin-right: 20px;
+    margin-left: 5px;
+    font-weight: bold;
 }
 
 .inputfile + label {
@@ -218,15 +217,27 @@ img {
 
 .inputfile:focus + label,
 .inputfile + label:hover {
-    background-color: #ffff00;
+    background-color: red;
+    color: white;
 }
 
 .box {
-    background-color: white;
-    border: 1px solid black;
-    padding: 1px 6px;
+    background-color: transparent;
+    border: 1.5px solid red;
+    height: 40px;
+    width: 115px;
+
+    color: red;
+    padding: 0 6px;
     border-radius: 2px;
     cursor: pointer;
+    font-size: 18px;
+
+    /* height: 80px;
+    width: 80px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block; */
 }
 
 .rotate {
@@ -241,9 +252,10 @@ img {
 .rotate:hover,
 .rotate:active,
 .rotate:focus {
-    background: #ffff00;
+    background: red;
     -webkit-transform: rotate(180deg);
     transform: rotate(180deg);
+    color: white;
 }
 
 .close-modal {
