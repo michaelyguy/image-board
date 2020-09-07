@@ -1,22 +1,44 @@
 * {
     margin: 0;
-    font-family: monospace;
     text-align: center;
+    /* font-family: "Helvetica"; */
+}
+
+@font-face {
+    font-family: "Stabil";
+    src: url("StabilGroteskTrial-Thin.otf");
 }
 
 h1 {
     font-size: 30px;
 }
 
+p {
+    font-size: 15px;
+    margin-top: 5px;
+}
+
 #main {
-    /* background-color: hotpink; */
     position: relative;
     width: 100vw;
     height: 80vh;
 }
 
 input {
-    margin: 0 5px;
+    margin: 0 10px;
+    font-size: 15px;
+    text-align: left;
+    padding: 3px;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 1px black solid;
+}
+
+::placeholder {
+    color: black;
+
+    /* opacity: 0.6; */
 }
 
 .home-container {
@@ -39,20 +61,20 @@ input {
     width: 1000px;
     display: flex;
     background-color: whitesmoke;
-    margin-top: -350px;
+    margin-top: -375px;
     margin-left: -500px;
     z-index: 2;
     border: 1px solid black;
     border-radius: 4px;
     padding: 5px;
 }
+
 .card {
     position: relative;
     width: 30%;
     margin: 30px 15px;
-    /* font-size: 16px; */
     border: black 1px solid;
-    padding: 5px;
+    padding: 10px;
     border-radius: 2%;
 }
 
@@ -68,10 +90,12 @@ input {
     transition: 0.5s ease;
     background-color: #ffff00;
     border-radius: 2%;
+    /* font-size: 50px; */
 }
 
 .card:hover .image-hover {
     opacity: 0.8;
+    /* font-size: 50px; */
 }
 
 .text {
@@ -83,6 +107,8 @@ input {
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     text-align: center;
+    font-family: "Stabil";
+    font-size: 50px;
 }
 
 img {
@@ -96,12 +122,30 @@ img {
     position: relative;
     top: 20px;
     text-align: center;
+    /* border-bottom: 1px black solid; */
 }
 
 .header form {
     margin: 0 auto;
     padding: 20px;
-    border-bottom: 1px solid black;
+}
+
+#logo {
+    animation: round 15s infinite linear;
+    transform-origin: center;
+    transform-box: fill-box;
+    /* width: 100px; */
+    z-index: 10;
+    margin: 200px 200px 0 200px;
+}
+
+@keyframes round {
+    from {
+        transform: rotateZ(0deg);
+    }
+    to {
+        transform: rotateZ(360deg);
+    }
 }
 
 .overlay {
@@ -121,8 +165,8 @@ img {
 
 .component img {
     margin: 20px auto;
-    width: 70%;
-    height: 70%;
+    width: 60%;
+    height: 60%;
     border-radius: 0;
 }
 
@@ -133,28 +177,31 @@ img {
     overflow: hidden;
     position: absolute;
     z-index: -1;
+    cursor: pointer;
+}
+
+#file {
+    /* color: red; */
+    font-family: "Stabil";
+    font-size: 15px;
 }
 
 .inputfile + label {
     display: inline-block;
-    cursor: pointer;
 }
 
 .inputfile:focus + label,
 .inputfile + label:hover {
     background-color: #ffff00;
+    /* font-size: 40px; */
 }
-
-/* button:hover {
-    background-color: #ffff00;
-} */
 
 .box {
     background-color: white;
     border: 1px solid black;
     padding: 1px 6px;
-
     border-radius: 2px;
+    cursor: pointer;
 }
 
 .rotate {
@@ -172,4 +219,45 @@ img {
     background: #ffff00;
     -webkit-transform: rotate(180deg);
     transform: rotate(180deg);
+}
+
+.close-modal {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    cursor: pointer;
+}
+
+.close-rotate {
+    -webkit-transform: translateZ(0);
+    -webkit-transition-duration: 0.3s;
+    -webkit-transition-property: transform;
+    transform: translateZ(0);
+    transition-duration: 0.3s;
+    transition-property: transform;
+}
+
+.close-rotate:hover,
+.close-rotate:active,
+.close-rotate:focus {
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
+.comments-container {
+    overflow: scroll;
+    height: 70px;
+}
+
+.recent {
+    padding: 5px;
+    border-bottom: 1px solid black;
+}
+
+#more {
+    font-size: 15px;
+    cursor: pointer;
+}
+.hide-button {
+    visibility: hidden;
 }

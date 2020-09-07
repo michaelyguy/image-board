@@ -12,13 +12,10 @@
                 comment: "",
                 comment_username: "",
                 comments: [],
+                created_at: "",
             };
         },
 
-        // mounted: function () {
-        //     console.log("------PROPS-------");
-        //     console.log(this.id);
-        // },
         mounted: function () {
             var self = this;
             axios
@@ -46,7 +43,7 @@
                     self.comment = response.data.comment;
                     self.comment_username = response.data.comment_username;
                     self.comments = response.data;
-                    console.log("this", self);
+                    // console.log("this", self);
                 })
                 .catch(function (err) {
                     console.log("ERROR IN GET /COMENTS", err);
@@ -69,6 +66,9 @@
                         comment_username: self.comment_username,
                     })
                     .then(function (response) {
+                        // console.log("----response.data----");
+
+                        // console.log(response.data);
                         self.comments.unshift(response.data);
                         // console.log("---------RESPONSE IN POST CLICK-------");
                         // console.log("this is the response: ", response);
@@ -90,7 +90,7 @@
             username: "",
             file: null,
             id: null,
-            cutofId: null,
+            lowestIdOnScreen: null,
         },
 
         mounted: function () {
@@ -103,10 +103,10 @@
                 // console.log(self.images);
 
                 //// SHOW THE MEXT GROUP OF PHOTOS -9 I ALREADY SHOWING ////
-                self.cutofId = self.images[0].id - 9;
-                console.log("----self.cutofId-----");
+                self.lowestIdOnScreen = self.images[self.images.length - 1].id;
+                // console.log("-------self.lowestIdOnScreen-----");
 
-                console.log(self.cutofId);
+                // console.log(self.lowestIdOnScreen);
             });
         },
 
@@ -151,18 +151,32 @@
             },
 
             scrollImages: function () {
-                console.log("----THIS.CUTOFID----");
-
                 let self = this;
+                // console.log("----self.lowestIdOnScreen-----");
+                // console.log(self.lowestIdOnScreen);
+
                 axios
-                    .get("/showMore/" + this.cutofId)
+                    .get("/showMore/" + self.lowestIdOnScreen)
                     .then(function (response) {
-                        console.log("-----RESPONSE IN GET SHOWMORE------");
-                        console.log(response);
-                        for (let i = 0; i < response.data.length; i++) {
+                        // console.log("-----RESPONSE IN GET SHOWMORE------");
+                        // console.log(response);
+                        for (var i = 0; i < response.data.length; i++) {
                             self.images.push(response.data[i]);
+                            if (
+                                response.data[i].id == response.data[i].lowestId
+                            ) {
+                                // console.log("hide btn");
+                                let moreBtn = document.getElementById("more");
+                                // console.log(
+                                //     "moreBtn is heerererererer",
+                                //     moreBtn
+                                // );
+                                moreBtn.classList.add("hide-button");
+                            }
                         }
-                        self.cutofId -= 9;
+
+                        self.lowestIdOnScreen =
+                            self.images[self.images.length - 1].id;
                     });
             },
         },

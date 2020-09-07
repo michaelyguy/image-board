@@ -1,5 +1,5 @@
 const express = require("express");
-const chalk = require("chalk");
+// const chalk = require("chalk");
 const app = express();
 const s3 = require("./s3.js");
 const { s3Url } = require("./config.json");
@@ -40,7 +40,6 @@ const uploader = multer({
     },
 });
 //////////////////////////////////////
-
 app.get("/images", (req, res) => {
     getUrlAndTitle()
         .then((result) => {
@@ -54,16 +53,13 @@ app.get("/images", (req, res) => {
 });
 
 //// CHECK FOR THE SCROLL ////
-
 app.get("/showMore/:id", (req, res) => {
-    console.log("-----REQ.PARAMS.Id-----");
-
-    console.log(req.params.id);
-
+    // console.log("-----REQ.PARAMS.Id-----");
+    // console.log(req.params.id);
     showMore(req.params.id)
         .then((result) => {
-            console.log("------RESULT IN SHOWMORE /ID-----");
-            console.log(result);
+            // console.log("------RESULT IN SHOWMORE /ID-----");
+            // console.log(result);
             res.json(result.rows);
         })
         .catch((err) => {
@@ -74,28 +70,26 @@ app.get("/showMore/:id", (req, res) => {
 app.get("/image/:id", (req, res) => {
     // console.log("----THIS. ID IN ID-------");
     // console.log(req.params.id);
-
     getImageById(req.params.id)
         .then((result) => {
-            console.log("-----RESULT IN /ID----");
-            console.log(result.rows);
-
+            // console.log("-----RESULT IN /ID----");
+            // console.log(result.rows);
             res.json(result.rows[0]);
         })
         .catch((err) => {
-            console.log("ERROR IN CATCH /ID", err);
+            console.log("/image/:id", err);
         });
 });
 
 app.get("/comments/:id", (req, res) => {
     getCommentById(req.params.id)
         .then((result) => {
-            console.log("-----RESULT IN GET COMMENTS-----");
-            console.log(result);
+            // console.log("-----RESULT IN GET COMMENTS-----");
+            // console.log(result);
             res.json(result.rows);
         })
         .catch((err) => {
-            console.log("ERROR IN CATCH GET COMMENTS", err);
+            console.log("GET/comments/:id", err);
         });
 });
 
@@ -112,7 +106,7 @@ app.post("/comment/:id", (req, res) => {
             res.json(result.rows[0]);
         })
         .catch((err) => {
-            console.log("ERROR IN CATCH /COMMENT POST", err);
+            console.log("POST/comment/:id", err);
         });
 });
 
@@ -130,7 +124,7 @@ app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
                 res.json(result.rows[0]);
             })
             .catch((err) => {
-                console.log("----ERROR IN POST /UPLOAD----", err);
+                console.log("/upload", err);
             });
     } else {
         console.log("SOMETHING WENT WRONG!");
