@@ -46,9 +46,14 @@
     <script id='template' type='text/x-template'>
         <div class="container">
             <div class='component'>
-                        <h1> {{title}} </h1>
-                        <p><b> {{description}} </b></p>
-                        <p> Photo by: {{username}} </p>
+                <div class="title">
+                    <!-- <h1> {{title}} </h1>
+                    <p><b> {{description}} </b></p>
+                    <p> Photo by: {{username}} </p> -->
+                     <h1> {{title}} </h1>
+                    <p>{{description}} /  by: {{username}}</p>
+                    
+                 </div>
                         <img :src= "image">
                        
                         
@@ -62,7 +67,7 @@
                                 
                                 <div v-for="comment in comments" class="comment" >
                                     
-                                    <p> {{comment.comment}} | {{comment.username}} | {{comment.created_at}} </p>
+                                    <p {{comment.comment}} | {{comment.username}} | {{comment.created_at}} </p>
                                     
                             
 
