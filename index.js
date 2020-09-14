@@ -1,5 +1,4 @@
 const express = require("express");
-// const chalk = require("chalk");
 const app = express();
 const s3 = require("./s3.js");
 const { s3Url } = require("./config.json");
@@ -43,88 +42,65 @@ const uploader = multer({
 app.get("/images", (req, res) => {
     getUrlAndTitle()
         .then((result) => {
-            // console.log("------RESULT IN GET /IMAGES------");
-            // console.log(result);
             res.json(result.rows);
         })
         .catch((err) => {
-            console.log("----ERROR IN GET /IMAGES----", err);
+            console.log("error in get/images: ", err);
         });
 });
 
-//// CHECK FOR THE SCROLL ////
+//// CHECK FOR SHOW MORE ////
 app.get("/showMore/:id", (req, res) => {
-    // console.log("-----REQ.PARAMS.Id-----");
-    // console.log(req.params.id);
     showMore(req.params.id)
         .then((result) => {
-            // console.log("------RESULT IN SHOWMORE /ID-----");
-            // console.log(result);
             res.json(result.rows);
         })
         .catch((err) => {
-            console.log("ERROR IN CATCH SHOWMORE", err);
+            console.log("error in get/showmore", err);
         });
 });
 
 app.get("/image/:id", (req, res) => {
-    // console.log("----THIS. ID IN ID-------");
-    // console.log(req.params.id);
     getImageById(req.params.id)
         .then((result) => {
-            // console.log("-----RESULT IN /ID----");
-            // console.log(result.rows);
             res.json(result.rows[0]);
         })
         .catch((err) => {
-            console.log("/image/:id", err);
+            console.log("error in get /image/:id", err);
         });
 });
 
 app.get("/comments/:id", (req, res) => {
     getCommentById(req.params.id)
         .then((result) => {
-            // console.log("-----RESULT IN GET COMMENTS-----");
-            // console.log(result);
             res.json(result.rows);
         })
         .catch((err) => {
-            console.log("GET/comments/:id", err);
+            console.log("error in get /comments/:id", err);
         });
 });
 
 app.post("/comment/:id", (req, res) => {
-    // console.log("------REQ.BODY------");
-    // console.log(req.body);
-    // console.log("-----THIS .ID------");
-    // console.log(req.params.id);
-
     addComent(req.body.comment, req.body.comment_username, req.params.id)
         .then((result) => {
-            // console.log("------RESULT IN /COMMENT POST-------");
-            // console.log(result);
             res.json(result.rows[0]);
         })
         .catch((err) => {
-            console.log("POST/comment/:id", err);
+            console.log("error in post /comment/:id", err);
         });
 });
 
 app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
     const { filename } = req.file;
     const imageUrl = `${s3Url}${filename}`;
-    // console.log("-----REQ.BODY------");
-    // console.log(req.body);
 
     if (filename) {
         addImage(imageUrl, req.body.title, req.body.description, req.body.user)
             .then((result) => {
-                // console.log("------RESULT------");
-                // console.log(result);
                 res.json(result.rows[0]);
             })
             .catch((err) => {
-                console.log("/upload", err);
+                console.log("error in post /upload", err);
             });
     } else {
         console.log("SOMETHING WENT WRONG!");
