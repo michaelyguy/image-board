@@ -91,6 +91,7 @@
             file: null,
             id: null,
             lowestIdOnScreen: null,
+            pageOffset: window.scrollX == 0,
         },
 
         mounted: function () {

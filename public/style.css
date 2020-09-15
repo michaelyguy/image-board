@@ -147,7 +147,7 @@ img {
         transform: rotateZ(0deg);
     }
     to {
-        transform: rotateZ(360deg);
+        transform: rotateZ(-360deg);
     }
 }
 

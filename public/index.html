@@ -33,7 +33,7 @@
                
             </div>
 
-<div id="more" @click="scrollImages">more</div>
+            <div v-if='pageOffset' id="more" @click="scrollImages">more</div>
             
 			<image-view v-if='id' :id="id" @close='closeMe'></image-view>
 
@@ -47,9 +47,6 @@
         <div class="container">
             <div class='component'>
                 <div class="title">
-                    <!-- <h1> {{title}} </h1>
-                    <p><b> {{description}} </b></p>
-                    <p> Photo by: {{username}} </p> -->
                      <h1> {{title}} </h1>
                     <p>{{description}} /  by: {{username}}</p>
                     
@@ -67,7 +64,7 @@
                                 
                                 <div v-for="comment in comments" class="comment" >
                                     
-                                    <p {{comment.comment}} | {{comment.username}} | {{comment.created_at}} </p>
+                                    <p> {{comment.comment}} | {{comment.username}} | {{comment.created_at}} </p>
                                     
                             
 
