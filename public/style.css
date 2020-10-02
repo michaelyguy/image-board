@@ -83,6 +83,8 @@ input {
     width: 30%;
     margin: 30px 15px;
     z-index: 2;
+    border: 2px solid red;
+    border-radius: 2px;
 }
 
 .image-hover {
@@ -132,13 +134,13 @@ img {
 }
 
 #logo {
-    animation: round 30s infinite linear;
+    animation: round 60s infinite linear;
     transform-origin: center;
     transform-box: fill-box;
     position: fixed;
     width: 80vw;
     left: 10%;
-    top: 20%;
+    top: 25%;
     fill: red;
 }
 
@@ -167,7 +169,7 @@ img {
 }
 
 .component img {
-    margin: 30px auto;
+    margin: 15px auto;
     width: 60%;
     height: 60%;
     border-radius: 0;
@@ -205,8 +207,8 @@ img {
 
 .box {
     background-color: transparent;
-    border: 1.5px solid red;
-    height: 26px;
+    border: 2px solid red;
+    height: 28px;
     width: 100px;
     color: red;
     padding: 0 6px;
@@ -235,8 +237,8 @@ img {
 
 .close-modal {
     position: absolute;
-    top: 25px;
-    right: 40px;
+    top: 15px;
+    right: 30px;
     cursor: pointer;
     font-size: 18px;
 }
@@ -259,16 +261,26 @@ img {
 
 .comments-container {
     overflow: scroll;
-    height: 70px;
+    height: 100px;
 }
 
 .recent {
     padding: 5px;
     border-bottom: 1.5px solid red;
-    margin: 25px 0;
+    margin: 25px 0 15px 0;
 }
 
 #more {
+    font-size: 18px;
+    font-family: "Stabil-r";
+    position: fixed;
+    bottom: 27px;
+    left: 49%;
+    color: red;
+    z-index: 5;
+}
+
+/* #scroll {
     font-size: 18px;
     cursor: pointer;
     font-family: "Stabil-r";
@@ -277,7 +289,8 @@ img {
     left: 49%;
     color: red;
     z-index: 5;
-}
+} */
+
 .hide-button {
     visibility: hidden;
 }
@@ -288,7 +301,7 @@ img {
 }
 
 .title {
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 .title h1 {

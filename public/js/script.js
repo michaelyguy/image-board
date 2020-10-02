@@ -17,14 +17,21 @@
         },
 
         mounted: function () {
+            var prevScrollpos = window.pageYOffset;
+            window.onscroll = function () {
+                var currentScrollPos = window.pageYOffset;
+                if (prevScrollpos > currentScrollPos) {
+                    document.getElementById("scroll").style.top = "0";
+                } else {
+                    document.getElementById("scroll").style.top = "-50px";
+                }
+                prevScrollpos = currentScrollPos;
+            };
+
             var self = this;
             axios
                 .get("/image/" + this.id)
                 .then(function (response) {
-                    // console.log("-----SELF------");
-                    // console.log(self.id);
-                    // console.log("-----RESPONSE------");
-                    // console.log(response);
                     self.title = response.data.title;
                     self.description = response.data.description;
                     self.username = response.data.username;
@@ -36,14 +43,9 @@
             axios
                 .get("/comments/" + this.id)
                 .then(function (response) {
-                    // console.log("-----RESPONSE IN GET COMMENTs----");
-                    // console.log(response);
-                    // console.log("-----SELF IN GET COMMENTs----");
-                    // console.log(self);
                     self.comment = response.data.comment;
                     self.comment_username = response.data.comment_username;
                     self.comments = response.data;
-                    // console.log("this", self);
                 })
                 .catch(function (err) {
                     console.log("ERROR IN GET /COMENTS", err);
@@ -56,23 +58,15 @@
             },
             handleClick: function (e) {
                 e.preventDefault();
-                // console.log("this:", this);
                 var self = this;
-                // console.log("-----SELF-------");
-                // console.log(self);
+
                 axios
                     .post("/comment/" + self.id, {
                         comment: self.comment,
                         comment_username: self.comment_username,
                     })
                     .then(function (response) {
-                        // console.log("----response.data----");
-
-                        // console.log(response.data);
                         self.comments.unshift(response.data);
-                        // console.log("---------RESPONSE IN POST CLICK-------");
-                        // console.log("this is the response: ", response);
-                        // self.images.unshift(response.data);
                     })
                     .catch(function (err) {
                         console.log("error ins POST /upload: ", err);
@@ -97,24 +91,14 @@
         mounted: function () {
             var self = this;
             axios.get("/images").then(function (response) {
-                // console.log("this: ", self);
-                // console.log("response from images:", response);
                 self.images = response.data;
-                // console.log("---SELF.IMAGES--");
-                // console.log(self.images);
-
-                //// SHOW THE MEXT GROUP OF PHOTOS -9 I ALREADY SHOWING ////
                 self.lowestIdOnScreen = self.images[self.images.length - 1].id;
-                // console.log("-------self.lowestIdOnScreen-----");
-
-                // console.log(self.lowestIdOnScreen);
             });
         },
 
         methods: {
             handleClick: function (e) {
                 e.preventDefault();
-                // console.log("this:", this);
                 var self = this;
 
                 //// WE USE FORMDATA ONLY COS WE ARE WORKING WITH A FILE!! ///
@@ -128,7 +112,6 @@
                 axios
                     .post("/upload", formData)
                     .then(function (response) {
-                        // console.log("this is the response: ", response);
                         self.images.unshift(response.data);
                     })
                     .catch(function (err) {
@@ -136,15 +119,9 @@
                     });
             },
             handleChange: function (e) {
-                // console.log("handleChange is running!");
-                // console.log("file: ", e.target.files[0]);
-
                 this.file = event.target.files[0];
-                // console.log("this after adding file to data:", this);
             },
             showid: function (id) {
-                // console.log("-----IMG.ID----");
-                // console.log(id);
                 this.id = id;
             },
             closeMe: function () {
@@ -153,25 +130,16 @@
 
             scrollImages: function () {
                 let self = this;
-                // console.log("----self.lowestIdOnScreen-----");
-                // console.log(self.lowestIdOnScreen);
 
                 axios
                     .get("/showMore/" + self.lowestIdOnScreen)
                     .then(function (response) {
-                        // console.log("-----RESPONSE IN GET SHOWMORE------");
-                        // console.log(response);
                         for (var i = 0; i < response.data.length; i++) {
                             self.images.push(response.data[i]);
                             if (
                                 response.data[i].id == response.data[i].lowestId
                             ) {
-                                // console.log("hide btn");
                                 let moreBtn = document.getElementById("more");
-                                // console.log(
-                                //     "moreBtn is heerererererer",
-                                //     moreBtn
-                                // );
                                 moreBtn.classList.add("hide-button");
                             }
                         }
