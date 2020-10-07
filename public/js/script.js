@@ -17,17 +17,6 @@
         },
 
         mounted: function () {
-            // var prevScrollpos = window.pageYOffset;
-            // window.onscroll = function () {
-            //     var currentScrollPos = window.pageYOffset;
-            //     if (prevScrollpos > currentScrollPos) {
-            //         document.getElementById("scroll").style.top = "0";
-            //     } else {
-            //         document.getElementById("scroll").style.top = "-50px";
-            //     }
-            //     prevScrollpos = currentScrollPos;
-            // };
-
             var self = this;
             axios
                 .get("/image/" + this.id)
@@ -153,7 +142,7 @@
             onScroll() {
                 if (window.scrollY <= 100) {
                     this.button = "scroll down";
-                } else if (window.scrollY <= 500) {
+                } else if (window.scrollY <= 600) {
                     this.button = "";
                 } else {
                     this.button = "more";
