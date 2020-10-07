@@ -17,16 +17,16 @@
         },
 
         mounted: function () {
-            var prevScrollpos = window.pageYOffset;
-            window.onscroll = function () {
-                var currentScrollPos = window.pageYOffset;
-                if (prevScrollpos > currentScrollPos) {
-                    document.getElementById("scroll").style.top = "0";
-                } else {
-                    document.getElementById("scroll").style.top = "-50px";
-                }
-                prevScrollpos = currentScrollPos;
-            };
+            // var prevScrollpos = window.pageYOffset;
+            // window.onscroll = function () {
+            //     var currentScrollPos = window.pageYOffset;
+            //     if (prevScrollpos > currentScrollPos) {
+            //         document.getElementById("scroll").style.top = "0";
+            //     } else {
+            //         document.getElementById("scroll").style.top = "-50px";
+            //     }
+            //     prevScrollpos = currentScrollPos;
+            // };
 
             var self = this;
             axios
@@ -86,6 +86,7 @@
             id: null,
             lowestIdOnScreen: null,
             pageOffset: window.scrollX == 0,
+            button: "scroll down",
         },
 
         mounted: function () {
@@ -94,6 +95,7 @@
                 self.images = response.data;
                 self.lowestIdOnScreen = self.images[self.images.length - 1].id;
             });
+            document.addEventListener("scroll", this.onScroll);
         },
 
         methods: {
@@ -147,6 +149,15 @@
                         self.lowestIdOnScreen =
                             self.images[self.images.length - 1].id;
                     });
+            },
+            onScroll() {
+                if (window.scrollY <= 100) {
+                    this.button = "scroll down";
+                } else if (window.scrollY <= 500) {
+                    this.button = "";
+                } else {
+                    this.button = "more";
+                }
             },
         },
     });

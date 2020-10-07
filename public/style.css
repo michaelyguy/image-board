@@ -275,21 +275,11 @@ img {
     font-family: "Stabil-r";
     position: fixed;
     bottom: 27px;
-    left: 49%;
+    text-align: center;
+    width: 100%;
     color: red;
     z-index: 5;
 }
-
-/* #scroll {
-    font-size: 18px;
-    cursor: pointer;
-    font-family: "Stabil-r";
-    position: fixed;
-    bottom: 27px;
-    left: 49%;
-    color: red;
-    z-index: 5;
-} */
 
 .hide-button {
     visibility: hidden;
