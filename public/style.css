@@ -278,7 +278,15 @@ img {
     text-align: center;
     width: 100%;
     color: red;
+    background-color: transparent;
     z-index: 5;
+    cursor: pointer;
+    /* border: 2px solid red;
+    height: 28px;
+    width: 100px;
+    padding: 0 6px;
+    border-radius: 2px;
+    cursor: pointer; */
 }
 
 .hide-button {

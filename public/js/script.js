@@ -140,12 +140,15 @@
                     });
             },
             onScroll() {
-                if (window.scrollY <= 100) {
+                if (window.scrollY <= 50) {
                     this.button = "scroll down";
                 } else if (window.scrollY <= 600) {
                     this.button = "";
                 } else {
                     this.button = "more";
+                    const more = document.getElementById("more");
+                    more.style.color = "white";
+                    more.style.fontSize = "x-large";
                 }
             },
         },
